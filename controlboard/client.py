@@ -56,7 +56,6 @@ def get_controlboard_client(domain, client_id, client_secret):
             try:
                 return getattr(client, name)(*args, **kwargs)
             except TransportServerError as e:
-                print(f"An error occurred: {e}. Attempting to refresh token and recreate transport.")
                 if e.code == 401:
                     client.transport = create_transport(domain, refresh_token())
                     return getattr(client, name)(*args, **kwargs)
@@ -75,7 +74,7 @@ def get_controlboard_client(domain, client_id, client_secret):
 
     return ControlBoardClient()
 
-def make_test_client():
+def easy_client():
     return get_controlboard_client(
         os.getenv('CONTROLBOARD_DOMAIN'),
         os.getenv('CONTROLBOARD_CLIENT_ID'),

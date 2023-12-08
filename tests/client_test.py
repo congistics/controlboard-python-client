@@ -1,12 +1,12 @@
 import os
 from dotenv import load_dotenv
-from controlboard.client import make_test_client
+from controlboard.client import easy_client
 from gql import gql
 
 
 def test_minimal_client():
     load_dotenv()
-    client = make_test_client()
+    client = easy_client()
     query = gql(
         """
         {cxJobs { DisplayName }

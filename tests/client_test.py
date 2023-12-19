@@ -1,4 +1,3 @@
-import os
 from dotenv import load_dotenv
 from controlboard.client import easy_client
 from gql import gql
